@@ -11,7 +11,6 @@ const locationRestrictions = [
 ];
 
 class Controls extends Component {
-
   onRestrictByChanged = (restrictBy) => {
     console.log('Restrict location by', restrictBy);
   };
@@ -31,7 +30,9 @@ class Controls extends Component {
           <label>Restrict location by:</label>
           <Select placeholder="Restrict by" onChange={this.onRestrictByChanged}>
             {locationRestrictions.map((restriction, index) => (
-              <Select.Option key={index} value={restriction.value}>{restriction.title}</Select.Option>
+              <Select.Option key={index} value={restriction.value}>
+                {restriction.title}
+              </Select.Option>
             ))}
           </Select>
         </ControlContainer>
@@ -39,15 +40,19 @@ class Controls extends Component {
           <label>Language results</label>
           <Select placeholder="Results language" onChange={this.onLanguageSelected} filterOption={true}>
             {supportedLanguages.map((supportedLanguage, index) => (
-              <Select.Option key={index} value={supportedLanguage.value}>{supportedLanguage.title}</Select.Option>
+              <Select.Option key={index} value={supportedLanguage.value}>
+                {supportedLanguage.title}
+              </Select.Option>
             ))}
           </Select>
         </ControlContainer>
         <ControlContainer>
-          <Checkbox onChange={this.onSessionTokenChanged}>Generate session token</Checkbox>
+          <Checkbox className="session-checkbox" onChange={this.onSessionTokenChanged}>
+            Generate session token
+          </Checkbox>
         </ControlContainer>
       </Container>
-    )
+    );
   }
 }
 

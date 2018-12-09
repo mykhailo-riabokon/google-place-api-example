@@ -11,7 +11,13 @@ export const ControlContainer = styled.div`
   min-width: 200px;
   margin-right: 10px;
   justify-content: center;
+  margin-bottom: 10px;
   &:last-child {
     margin-right: 0;
+  }
+
+  .session-checkbox {
+    margin-top: auto;
+    margin-bottom: 8px;
   }
 `;

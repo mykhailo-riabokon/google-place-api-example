@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
-import { AutoComplete } from 'antd';
+import { Autocomplete } from './styled.components';
 
 class LocationSelect extends Component {
-  onSelect = () => {
-
-  };
+  onSelect = () => {};
 
   getLocations = (value) => {
     debugger;
 
     if (value) {
-
     }
-
   };
 
   getLocationDetails = (location) => {
@@ -26,10 +22,7 @@ class LocationSelect extends Component {
   };
 
   render() {
-    return (
-      <AutoComplete
-        onSelect={this.getLocationDetails} onSearch={this.getLocations} onChange={this.onChange} />
-    )
+    return <Autocomplete onSelect={this.getLocationDetails} onSearch={this.getLocations} onChange={this.onChange} />;
   }
 }
 

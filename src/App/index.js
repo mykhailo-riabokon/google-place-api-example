@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import { Input, Icon } from 'antd';
-import { AppContainer, Title, Container } from './styled.components';
+import { AppContainer, Title, ContainerColumn } from './styled.components';
 import LocationSelect from './components/LocationSelect';
 import Controls from './components/Controls';
+import Results from './components/Results';
 
 class App extends Component {
   render() {
     return (
       <AppContainer>
-        <Title>Google Place API demo</Title>
-        <Container>
-          <Input placeholder="API key" addonAfter={<Icon type="cross" />} />
+        <ContainerColumn className="red">
+          <Title>Google place API</Title>
           <Controls />
           <LocationSelect />
-        </Container>
+          <div className="expenses" />
+        </ContainerColumn>
+        <ContainerColumn className="blue" />
       </AppContainer>
     );
   }
