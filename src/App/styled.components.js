@@ -1,12 +1,20 @@
 import styled from 'styled-components';
 
 export const ContainerColumn = styled.div`
-  width: 100%;
   margin-bottom: 10px;
 
   @media (min-width: 768px) {
-    margin-right: 20px;
-    padding-right: 20px;
+    &:first-child {
+      margin-right: 20px;
+    }
+
+    &.bigger {
+      flex-grow: 2;
+      min-width: 350px;
+
+      display: flex;
+      flex-direction: row;
+    }
   }
 `;
 
@@ -20,14 +28,6 @@ export const AppContainer = styled.div`
 
   @media (min-width: 768px) {
     flex-direction: row;
-  }
-
-  .red {
-    background-color: red;
-  }
-
-  .blue {
-    background-color: blue;
   }
 `;
 
