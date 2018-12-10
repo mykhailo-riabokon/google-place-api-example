@@ -2,247 +2,251 @@
 
 export default [
   {
+    value: '',
+    title: 'Your PC or location langauge',
+  },
+  {
     value: 'ar',
-    title: 'Arabic'
+    title: 'Arabic',
   },
   {
     value: 'lt',
-    title: 'Lithuanian'
+    title: 'Lithuanian',
   },
   {
     value: 'be',
-    title: 'Belarusian'
+    title: 'Belarusian',
   },
   {
     value: 'lv',
-    title: 'Latvian'
+    title: 'Latvian',
   },
   {
     value: 'bg',
-    title: 'Bulgarian'
+    title: 'Bulgarian',
   },
   {
     value: 'mk',
-    title: 'Macedonian'
+    title: 'Macedonian',
   },
   {
     value: 'bn',
-    title: 'Bengali'
+    title: 'Bengali',
   },
   {
     value: 'ml',
-    title: 'Malayalam'
+    title: 'Malayalam',
   },
   {
     value: 'ca',
-    title: 'Catalan'
+    title: 'Catalan',
   },
   {
     value: 'mr',
-    title: 'Marathi'
+    title: 'Marathi',
   },
   {
     value: 'cs',
-    title: 'Czech'
+    title: 'Czech',
   },
   {
     value: 'my',
-    title: 'Burmese'
+    title: 'Burmese',
   },
   {
     value: 'da',
-    title: 'Danish'
+    title: 'Danish',
   },
   {
     value: 'nl',
-    title: 'Dutch'
+    title: 'Dutch',
   },
   {
     value: 'de',
-    title: 'German'
+    title: 'German',
   },
   {
     value: 'no',
-    title: 'Norwegian'
+    title: 'Norwegian',
   },
   {
     value: 'el',
-    title: 'Greek'
+    title: 'Greek',
   },
   {
     value: 'pa',
-    title: 'Punjabi'
+    title: 'Punjabi',
   },
   {
     value: 'en',
-    title: 'English'
+    title: 'English',
   },
   {
     value: 'pl',
-    title: 'Polish'
+    title: 'Polish',
   },
   {
     value: 'en-Au',
-    title: 'English (Australian)'
+    title: 'English (Australian)',
   },
   {
     value: 'pt',
-    title: 'Portuguese'
+    title: 'Portuguese',
   },
   {
     value: 'en-GB',
-    title: 'English (Great Britain)'
+    title: 'English (Great Britain)',
   },
   {
     value: 'pt-BR',
-    title: 'Portuguese (Brazil)'
+    title: 'Portuguese (Brazil)',
   },
   {
     value: 'es',
-    title: 'Spanish'
+    title: 'Spanish',
   },
   {
     value: 'pt-PT',
-    title: 'Portuguese (Portugal)'
+    title: 'Portuguese (Portugal)',
   },
   {
     value: 'eu',
-    title: 'Basque'
+    title: 'Basque',
   },
   {
     value: 'ro',
-    title: 'Romanian'
+    title: 'Romanian',
   },
   {
     value: 'fa',
-    title: 'Farsi'
+    title: 'Farsi',
   },
   {
     value: 'ru',
-    title: 'Russian'
+    title: 'Russian',
   },
   {
     value: 'fi',
-    title: 'Finnish'
+    title: 'Finnish',
   },
   {
     value: 'sk',
-    title: 'Slovak'
+    title: 'Slovak',
   },
   {
     value: 'fil',
-    title: 'Filipino'
+    title: 'Filipino',
   },
   {
     value: 'sl',
-    title: 'Slovenian'
+    title: 'Slovenian',
   },
   {
     value: 'fr',
-    title: 'French'
+    title: 'French',
   },
   {
     value: 'sq',
-    title: 'Albanian'
+    title: 'Albanian',
   },
   {
     value: 'gl',
-    title: 'Galician'
+    title: 'Galician',
   },
   {
     value: 'sr',
-    title: 'Serbian'
+    title: 'Serbian',
   },
   {
     value: 'gu',
-    title: 'Gujarati'
+    title: 'Gujarati',
   },
   {
     value: 'sv',
-    title: 'Swedish'
+    title: 'Swedish',
   },
   {
     value: 'hi',
-    title: 'Hindi'
+    title: 'Hindi',
   },
   {
     value: 'ta',
-    title: 'Tamil'
+    title: 'Tamil',
   },
   {
     value: 'hr',
-    title: 'Croatian'
+    title: 'Croatian',
   },
   {
     value: 'te',
-    title: 'Telugu'
+    title: 'Telugu',
   },
   {
     value: 'hu',
-    title: 'Hungarian'
+    title: 'Hungarian',
   },
   {
     value: 'th',
-    title: 'Thai'
+    title: 'Thai',
   },
   {
     value: 'id',
-    title: 'Indonesian'
+    title: 'Indonesian',
   },
   {
     value: 'tl',
-    title: 'Tagalog'
+    title: 'Tagalog',
   },
   {
     value: 'it',
-    title: 'Italian'
+    title: 'Italian',
   },
   {
     value: 'tr',
-    title: 'Turkish'
+    title: 'Turkish',
   },
   {
     value: 'iw',
-    title: 'Hebrew'
+    title: 'Hebrew',
   },
   {
     value: 'uk',
-    title: 'Ukrainian'
+    title: 'Ukrainian',
   },
   {
     value: 'ja',
-    title: 'Japanese'
+    title: 'Japanese',
   },
   {
     value: 'uz',
-    title: 'Uzbek'
+    title: 'Uzbek',
   },
   {
     value: 'kk',
-    title: 'Kazakh'
+    title: 'Kazakh',
   },
   {
     value: 'vi',
-    title: 'Vietnamese'
+    title: 'Vietnamese',
   },
   {
     value: 'kn',
-    title: 'Kannada'
+    title: 'Kannada',
   },
   {
     value: 'zh-CN',
-    title: 'Chinese (Simlified)'
+    title: 'Chinese (Simlified)',
   },
   {
     value: 'ko',
-    title: 'Korean'
+    title: 'Korean',
   },
   {
     value: 'zh-TW',
-    title: 'Chinese (Traditional)'
+    title: 'Chinese (Traditional)',
   },
   {
     value: 'ky',
-    title: 'Kyrgyz'
+    title: 'Kyrgyz',
   },
 ];

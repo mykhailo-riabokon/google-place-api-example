@@ -1,44 +1,54 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Container, ControlContainer } from './styled.components';
 import { Select, Checkbox } from 'antd';
 import supportedLanguages from './supportedLanguages';
 
-const locationRestrictions = [
-  { title: 'No restiction', value: '' },
+const locationTypes = [
+  { title: 'All locations', value: '' },
   { title: 'Address (Street)', value: 'address' },
   { title: 'City', value: 'city' },
   { title: 'Country', value: 'Country' },
 ];
 
 class Controls extends Component {
-  onRestrictByChanged = (restrictBy) => {
-    console.log('Restrict location by', restrictBy);
+  state = {
+    placeType: this.props.placeType,
+    language: this.props.language,
+    useSession: this.props.useSession,
   };
 
-  onLanguageSelected = (language) => {
-    console.log('Display results in', language);
-  };
-
-  onSessionTokenChanged = (event) => {
-    console.log('Display results in', event.target.checked);
+  updateState = (key, value) => {
+    this.setState({ [key]: value }, () => this.props.onRequestConfigChanged(this.state));
   };
 
   render() {
     return (
       <Container>
         <ControlContainer>
-          <label>Restrict location by:</label>
-          <Select placeholder="Restrict by" onChange={this.onRestrictByChanged}>
-            {locationRestrictions.map((restriction, index) => (
-              <Select.Option key={index} value={restriction.value}>
-                {restriction.title}
+          <label>Query locations by:</label>
+          <Select
+            defaultValue={this.state.placeType}
+            value={this.state.placeType}
+            placeholder="Query by:"
+            onChange={(value) => this.updateState('placeType', value)}
+          >
+            {locationTypes.map((locationType, index) => (
+              <Select.Option key={index} value={locationType.value}>
+                {locationType.title}
               </Select.Option>
             ))}
           </Select>
         </ControlContainer>
         <ControlContainer>
-          <label>Language results</label>
-          <Select placeholder="Results language" onChange={this.onLanguageSelected} filterOption={true}>
+          <label>Results language</label>
+          <Select
+            defaultValue={this.state.language}
+            value={this.state.language}
+            placeholder="Results language"
+            onChange={(value) => this.updateState('language', value)}
+            filterOption={true}
+          >
             {supportedLanguages.map((supportedLanguage, index) => (
               <Select.Option key={index} value={supportedLanguage.value}>
                 {supportedLanguage.title}
@@ -47,7 +57,11 @@ class Controls extends Component {
           </Select>
         </ControlContainer>
         <ControlContainer>
-          <Checkbox className="session-checkbox" onChange={this.onSessionTokenChanged}>
+          <Checkbox
+            className="session-checkbox"
+            defaultChecked={this.state.useSession}
+            onChange={(event) => this.updateState('useSession', event.target.checked)}
+          >
             Generate session token
           </Checkbox>
         </ControlContainer>
@@ -55,5 +69,12 @@ class Controls extends Component {
     );
   }
 }
+
+Controls.propTypes = {
+  placeType: PropTypes.string,
+  language: PropTypes.string,
+  useSession: PropTypes.bool,
+  onRequestConfigChanged: PropTypes.func.isRequired,
+};
 
 export default Controls;
