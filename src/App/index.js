@@ -55,7 +55,7 @@ class App extends Component {
     return (
       <AppContainer>
         <ContainerColumn>
-          <Title>Google place API config</Title>
+          <Title>Google Place API config</Title>
           <Spin spinning={googlePlaceApi.isLoading}>
             <Controls onRequestConfigChanged={googlePlaceApi.reFetchGoogleApiScript} {...googlePlaceApi.config} />
             <LocationSelect
