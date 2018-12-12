@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
+import RequestApiKeyModal from './RequestApiKeyModal';
 
 const getConfigFromLocation = () => {
   const params = queryString.parse(window.location.search);
@@ -18,6 +19,8 @@ export default (WrappedComponent) => {
 
       this.state = {
         isApiLoading: false,
+        apiKey: localStorage.getItem('apiKey'),
+        showApiModal: false,
       };
 
       this.waitApiTimeout = null;
@@ -96,10 +99,9 @@ export default (WrappedComponent) => {
       }
     };
 
-    addGoogleApiScript = (config = {}) => {
-      const key = 'AIzaSyBid0kzTee-45dCVdR26QzsJxUiQqymL9s';
+    addGoogleApiScript = () => {
       const params = {
-        key,
+        key: this.state.apiKey,
         libraries: 'places', // in order to fetch only places lib
       };
 
@@ -123,8 +125,17 @@ export default (WrappedComponent) => {
       window.location.search = params;
     };
 
+    onSaveKey = (key) => {
+      localStorage.setItem('apiKey', key);
+      this.setState({ showApiModal: false, apiKey: key }, this.addGoogleApiScript);
+    };
+
     componentDidMount() {
-      this.addGoogleApiScript();
+      if (this.state.apiKey) {
+        this.addGoogleApiScript();
+      } else {
+        this.setState({ showApiModal: true });
+      }
     }
 
     get googlePlaceApi() {
@@ -138,7 +149,12 @@ export default (WrappedComponent) => {
     }
 
     render() {
-      return <WrappedComponent {...this.props} googlePlaceApi={this.googlePlaceApi} />;
+      return (
+        <>
+          <RequestApiKeyModal visible={this.state.showApiModal} onSaveKey={this.onSaveKey} />
+          <WrappedComponent {...this.props} googlePlaceApi={this.googlePlaceApi} />
+        </>
+      );
     }
   };
 };
