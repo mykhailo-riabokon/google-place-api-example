@@ -86,9 +86,19 @@ export default (WrappedComponent) => {
 
     addGoogleApiScript = (config = {}) => {
       const key = 'AIzaSyBid0kzTee-45dCVdR26QzsJxUiQqymL9s';
+      const params = {
+        key,
+        libraries: 'places', // in order to fetch only places lib
+      };
+
+      if (this.config.language) {
+        params.language = this.config.language;
+      }
+
+      const query = queryString.stringify(params);
       const scriptElement = document.createElement('script');
 
-      scriptElement.src = `https://maps.googleapis.com/maps/api/js?key=${key}&libraries=places`;
+      scriptElement.src = `https://maps.googleapis.com/maps/api/js?${query}`;
 
       document.head.appendChild(scriptElement);
 

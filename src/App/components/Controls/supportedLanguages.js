@@ -1,4 +1,5 @@
 // More details https://developers.google.com/maps/faq#languagesupport
+// https://developers.google.com/maps/documentation/javascript/localization#Language
 
 export default [
   {
