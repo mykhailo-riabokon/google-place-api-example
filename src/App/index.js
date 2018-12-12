@@ -16,6 +16,7 @@ const mapRawGoogleDetails = (rawGoogleDetails) => {
   };
 
   return {
+    placeId: rawGoogleDetails.place_id,
     displayAddress: rawGoogleDetails.formatted_address,
     streetNumber: getFromAddress('street_number'),
     street: getFromAddress('street_address') || getFromAddress('route'),
@@ -36,7 +37,12 @@ class App extends Component {
   };
 
   updateState = (googlePlaceDetails) => {
-    this.setState({ googleDetails: googlePlaceDetails, mappedGoogleDetails: mapRawGoogleDetails(googlePlaceDetails) });
+    if (googlePlaceDetails) {
+      this.setState({
+        googleDetails: googlePlaceDetails,
+        mappedGoogleDetails: mapRawGoogleDetails(googlePlaceDetails),
+      });
+    }
   };
 
   onLocationSelected = (googlePlaceId) => {

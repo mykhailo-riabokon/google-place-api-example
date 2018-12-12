@@ -21,6 +21,7 @@ export default (WrappedComponent) => {
       };
 
       this.waitApiTimeout = null;
+      this.sessionToken = null;
       this.config = getConfigFromLocation();
     }
 
@@ -37,6 +38,12 @@ export default (WrappedComponent) => {
 
         if (this.config.placeType) {
           requestParams.types = [].concat(this.config.placeType);
+        }
+
+        if (this.config.useSession) {
+          this.sessionToken = this.sessionToken || this.createSessionToken();
+
+          requestParams.sessionToken = this.sessionToken;
         }
 
         autocompleteService.getPlacePredictions(requestParams, (predictions, status) => {
@@ -59,10 +66,15 @@ export default (WrappedComponent) => {
           // basic set of fields, which is free, but there are more if needed https://developers.google.com/places/web-service/details#fields
           fields: ['address_component', 'formatted_address', 'geometry', 'place_id', 'plus_code', 'utc_offset'],
           placeId,
-          // sessionToken,
         };
 
+        if (this.config.useSession) {
+          requestParams.sessionToken = this.sessionToken;
+        }
+
         placeService.getDetails(requestParams, (details, status) => {
+          this.sessionToken = null;
+
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
             resolve(details);
           } else {
@@ -119,7 +131,6 @@ export default (WrappedComponent) => {
       return {
         getPlaceDetails: this.getPlaceDetails,
         getPredictions: this.getPredictions,
-        createSessionToken: this.createPlaceSessionToken,
         reFetchGoogleApiScript: this.reFetchGoogleApiScript,
         isLoading: this.state.isApiLoading,
         config: this.config,
