@@ -28,56 +28,43 @@ export default (WrappedComponent) => {
       return new window.google.maps.places.AutocompleteSessionToken();
     };
 
-    getPredictions = (input, sessionToken) => {
+    getPredictions = (input) => {
       return new Promise((resolve) => {
         const autocompleteService = new window.google.maps.places.AutocompleteService();
+        const requestParams = {
+          input,
+        };
 
-        autocompleteService.getPlacePredictions(
-          {
-            input,
-            types: ['address'],
-            sessionToken,
-          },
-          (predictions, status) => {
-            if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-              resolve(predictions);
-            } else {
-              resolve([]);
-            }
+        autocompleteService.getPlacePredictions(requestParams, (predictions, status) => {
+          if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+            resolve(predictions);
+          } else {
+            resolve([]);
           }
-        );
+        });
       });
     };
 
-    getPlaceDetails = (placeId, sessionToken) => {
+    getPlaceDetails = (placeId) => {
       return new Promise((resolve) => {
         const placeService = new window.google.maps.places.PlacesService(
-          document.getElementById('hidden-location-field')
+          document.getElementById('hidden-map')
+          // or document.createElement('div') but it meens it will be created each time
         );
+        const requestParams = {
+          // basic set of fields, which is free, but there are more if needed https://developers.google.com/places/web-service/details#fields
+          fields: ['address_component', 'formatted_address', 'geometry', 'place_id', 'plus_code', 'utc_offset'],
+          placeId,
+          // sessionToken,
+        };
 
-        placeService.getDetails(
-          {
-            fields: [
-              'geometry',
-              'place_id',
-              'address_component',
-              'formatted_address',
-              'scope',
-              'type',
-              'utc_offset',
-              'vicinity',
-            ],
-            placeId,
-            sessionToken,
-          },
-          (details, status) => {
-            if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-              resolve(details);
-            } else {
-              resolve(null);
-            }
+        placeService.getDetails(requestParams, (details, status) => {
+          if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+            resolve(details);
+          } else {
+            resolve(null);
           }
-        );
+        });
       });
     };
 
