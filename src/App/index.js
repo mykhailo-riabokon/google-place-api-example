@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AppContainer, Title, ContainerColumn } from './styled.components';
-import { Spin } from 'antd';
+import { AppContainer, Title, ContainerColumn, GitHubCorner } from './styled.components';
+import { Spin, Icon } from 'antd';
 import LocationSelect from './components/LocationSelect';
 import Controls from './components/Controls';
 import Results from './components/Results';
@@ -53,22 +53,27 @@ class App extends Component {
     const { googlePlaceApi } = this.props;
 
     return (
-      <AppContainer>
-        <ContainerColumn>
-          <Title>Google Place API config</Title>
-          <Spin spinning={googlePlaceApi.isLoading}>
-            <Controls onRequestConfigChanged={googlePlaceApi.reFetchGoogleApiScript} {...googlePlaceApi.config} />
-            <LocationSelect
-              fetchLocations={googlePlaceApi.getPredictions}
-              onLocationSelected={this.onLocationSelected}
-            />
-          </Spin>
-        </ContainerColumn>
-        <ContainerColumn className="bigger">
-          <Results title="Google API results" data={this.state.googleDetails} />
-          <Results title="Parsed result" data={this.state.mappedGoogleDetails} />
-        </ContainerColumn>
-      </AppContainer>
+      <>
+        <GitHubCorner href="https://github.com/mykhailo-riabokon/google-place-api-example" target="_blank">
+          <Icon type="github" style={{ fontSize: '4em' }} />
+        </GitHubCorner>
+        <AppContainer>
+          <ContainerColumn>
+            <Title>Google Place API config</Title>
+            <Spin spinning={googlePlaceApi.isLoading}>
+              <Controls onRequestConfigChanged={googlePlaceApi.reFetchGoogleApiScript} {...googlePlaceApi.config} />
+              <LocationSelect
+                fetchLocations={googlePlaceApi.getPredictions}
+                onLocationSelected={this.onLocationSelected}
+              />
+            </Spin>
+          </ContainerColumn>
+          <ContainerColumn className="bigger">
+            <Results title="Google API results" data={this.state.googleDetails} />
+            <Results title="Parsed result" data={this.state.mappedGoogleDetails} />
+          </ContainerColumn>
+        </AppContainer>
+      </>
     );
   }
 }

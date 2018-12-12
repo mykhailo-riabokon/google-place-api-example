@@ -18,6 +18,14 @@ export const ContainerColumn = styled.div`
   }
 `;
 
+export const GitHubCorner = styled.a`
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  padding: 10px;
+`;
+
 export const AppContainer = styled.div`
   display: flex;
   height: 100vh;
