@@ -11,9 +11,17 @@ export const ControlContainer = styled.div`
   min-width: 200px;
   margin-right: 10px;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   &:last-child {
     margin-right: 0;
+  }
+
+  &.language-control {
+    width: 230px;
+  }
+
+  label {
+    margin-bottom: 10px;
   }
 
   .session-checkbox {

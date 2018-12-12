@@ -31,7 +31,7 @@ class Controls extends Component {
           <Select
             defaultValue={this.state.placeType}
             value={this.state.placeType}
-            placeholder="Query by:"
+            placeholder="Query by"
             onChange={(value) => this.updateState('placeType', value)}
           >
             {locationTypes.map((locationType, index) => (
@@ -41,8 +41,8 @@ class Controls extends Component {
             ))}
           </Select>
         </ControlContainer>
-        <ControlContainer>
-          <label>Results language</label>
+        <ControlContainer className="language-control">
+          <label>Results language:</label>
           <Select
             defaultValue={this.state.language}
             value={this.state.language}
