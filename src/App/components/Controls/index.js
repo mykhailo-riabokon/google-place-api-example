@@ -4,11 +4,12 @@ import { Container, ControlContainer } from './styled.components';
 import { Select, Checkbox } from 'antd';
 import supportedLanguages from './supportedLanguages';
 
+// https://developers.google.com/places/web-service/supported_types#table3
 const locationTypes = [
   { title: 'All locations', value: '' },
-  { title: 'Address (Street)', value: 'address' },
-  { title: 'City', value: 'city' },
-  { title: 'Country', value: 'Country' },
+  { title: 'Addresses', value: 'address' },
+  { title: 'Cities', value: '(cities)' },
+  { title: 'Regions', value: '(regions)' },
 ];
 
 class Controls extends Component {

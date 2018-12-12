@@ -35,6 +35,10 @@ export default (WrappedComponent) => {
           input,
         };
 
+        if (this.config.placeType) {
+          requestParams.types = [].concat(this.config.placeType);
+        }
+
         autocompleteService.getPlacePredictions(requestParams, (predictions, status) => {
           if (status === window.google.maps.places.PlacesServiceStatus.OK) {
             resolve(predictions);
