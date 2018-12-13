@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
 import RequestApiKeyModal from './RequestApiKeyModal';
+import { Spin } from 'antd';
 
 const getConfigFromLocation = () => {
   const params = queryString.parse(window.location.search);
@@ -21,6 +22,7 @@ export default (WrappedComponent) => {
         isApiLoading: false,
         apiKey: localStorage.getItem('apiKey'),
         showApiModal: false,
+        isKeyLoading: false,
       };
 
       this.waitApiTimeout = null;
@@ -130,11 +132,20 @@ export default (WrappedComponent) => {
       this.setState({ showApiModal: false, apiKey: key }, this.addGoogleApiScript);
     };
 
+    fetchKey = () => {
+      this.setState({ isKeyLoading: true });
+
+      fetch('https://us-central1-someexample-af6f6.cloudfunctions.net/getKey/')
+        .then((response) => response.json())
+        .then((response) => this.setState({ isKeyLoading: false }, () => this.onSaveKey(response.key)))
+        .catch(() => this.setState({ showApiModal: true, isKeyLoading: false }));
+    };
+
     componentDidMount() {
       if (this.state.apiKey) {
         this.addGoogleApiScript();
       } else {
-        this.setState({ showApiModal: true });
+        this.fetchKey();
       }
     }
 
@@ -150,10 +161,10 @@ export default (WrappedComponent) => {
 
     render() {
       return (
-        <>
+        <Spin spinning={this.state.isKeyLoading}>
           <RequestApiKeyModal visible={this.state.showApiModal} onSaveKey={this.onSaveKey} />
           <WrappedComponent {...this.props} googlePlaceApi={this.googlePlaceApi} />
-        </>
+        </Spin>
       );
     }
   };
