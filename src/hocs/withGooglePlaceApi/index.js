@@ -34,6 +34,20 @@ export default (WrappedComponent) => {
       return new window.google.maps.places.AutocompleteSessionToken();
     };
 
+    handleResponse = (status, response, emptyResponse) => {
+      const { OK, ZERO_RESULTS } = window.google.maps.places.PlacesServiceStatus;
+
+      if (status === OK) {
+        return response;
+      }
+
+      if (status !== ZERO_RESULTS) {
+        this.deleteKey();
+      }
+
+      return emptyResponse;
+    };
+
     getPredictions = (input) => {
       return new Promise((resolve) => {
         const autocompleteService = new window.google.maps.places.AutocompleteService();
@@ -52,11 +66,9 @@ export default (WrappedComponent) => {
         }
 
         autocompleteService.getPlacePredictions(requestParams, (predictions, status) => {
-          if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-            resolve(predictions);
-          } else {
-            resolve([]);
-          }
+          const response = this.handleResponse(status, predictions, []);
+
+          resolve(response);
         });
       });
     };
@@ -79,12 +91,9 @@ export default (WrappedComponent) => {
 
         placeService.getDetails(requestParams, (details, status) => {
           this.sessionToken = null;
+          const response = this.handleResponse(status, details, null);
 
-          if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-            resolve(details);
-          } else {
-            resolve(null);
-          }
+          resolve(response);
         });
       });
     };
@@ -117,6 +126,7 @@ export default (WrappedComponent) => {
       scriptElement.src = `https://maps.googleapis.com/maps/api/js?${query}`;
 
       document.head.appendChild(scriptElement);
+      window.gm_authFailure = () => this.deleteKey();
 
       this.setState({ isApiLoading: true }, this.waitForApi);
     };
@@ -130,6 +140,17 @@ export default (WrappedComponent) => {
     onSaveKey = (key) => {
       localStorage.setItem('apiKey', key);
       this.setState({ showApiModal: false, apiKey: key }, this.addGoogleApiScript);
+    };
+
+    onUserSaveKey = (key) => {
+      localStorage.setItem('apiKey', key);
+      window.location.reload();
+    };
+
+    deleteKey = () => {
+      localStorage.removeItem('apiKey');
+
+      this.setState({ apiKey: null, showApiModal: true });
     };
 
     fetchKey = () => {
@@ -162,7 +183,7 @@ export default (WrappedComponent) => {
     render() {
       return (
         <Spin spinning={this.state.isKeyLoading}>
-          <RequestApiKeyModal visible={this.state.showApiModal} onSaveKey={this.onSaveKey} />
+          <RequestApiKeyModal visible={this.state.showApiModal} onSaveKey={this.onUserSaveKey} />
           <WrappedComponent {...this.props} googlePlaceApi={this.googlePlaceApi} />
         </Spin>
       );

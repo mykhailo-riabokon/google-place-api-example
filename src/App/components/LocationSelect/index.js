@@ -28,6 +28,7 @@ class LocationSelect extends Component {
         onSelect={this.props.onLocationSelected}
         onSearch={this.getLocations}
         dataSource={this.state.dataSource}
+        allowClear={true}
         placeholder="Type location and select"
       />
     );
