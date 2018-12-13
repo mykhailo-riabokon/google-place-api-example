@@ -1,11 +1,13 @@
 const functions = require('firebase-functions');
-const cors = require('cors')({ origin: true }); // Allow origins, which is only good for demo
+const express = require('express');
+const cors = require('cors');
 const apiKey = functions.config().google['api-key'];
+const app = express();
 
-exports.getKey = functions.https.onRequest((request, response) => {
-  cors(request, response, () => {
-    response.send({
-      key: apiKey,
-    });
-  });
+// Allow origins, which is only good for demo
+app.use(cors({ origin: true }));
+app.get('/', (_, res) => {
+  res.send({ key: apiKey });
 });
+
+exports.getKey = functions.https.onRequest(app);
