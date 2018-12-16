@@ -1,11 +1,7 @@
 // More details https://developers.google.com/maps/faq#languagesupport
 // https://developers.google.com/maps/documentation/javascript/localization#Language
 
-export default [
-  {
-    value: '',
-    title: 'Your PC or location langauge',
-  },
+const list = [
   {
     value: 'ar',
     title: 'Arabic',
@@ -251,3 +247,27 @@ export default [
     title: 'Kyrgyz',
   },
 ];
+
+const sortByTitle = (a, b) => {
+  const titleA = a.title.toUpperCase();
+  const titleB = b.title.toUpperCase();
+
+  let comparison = 0;
+
+  if (titleA > titleB) {
+    comparison = 1;
+  } else if (titleA < titleB) {
+    comparison = -1;
+  }
+
+  return comparison;
+};
+
+const sortedList = list.sort(sortByTitle);
+
+sortedList.unshift({
+  value: '',
+  title: 'Your PC or location langauge',
+});
+
+export default sortedList;
