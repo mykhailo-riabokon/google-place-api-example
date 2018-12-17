@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Container, ControlContainer } from './styled.components';
+import { Container, ControlContainer, ControlsRow } from './styled.components';
 import { Select, Checkbox, Tooltip, Icon } from 'antd';
 import supportedLanguages from './supportedLanguages';
 
@@ -57,48 +57,7 @@ class Controls extends Component {
   render() {
     return (
       <Container>
-        <ControlContainer>
-          <label>
-            <Tooltip title={this.locationByInfo} placement="bottomRight">
-              <Icon type="info-circle" />
-            </Tooltip>{' '}
-            Query locations by:
-          </label>
-          <Select
-            defaultValue={this.state.placeType}
-            value={this.state.placeType}
-            placeholder="Query by"
-            onChange={(value) => this.updateState('placeType', value)}
-          >
-            {locationTypes.map((locationType, index) => (
-              <Select.Option key={index} value={locationType.value}>
-                {locationType.title}
-              </Select.Option>
-            ))}
-          </Select>
-        </ControlContainer>
-        <ControlContainer className="language-control">
-          <label>
-            <Tooltip title={this.languagesInfo} placement="bottom">
-              <Icon type="info-circle" />
-            </Tooltip>{' '}
-            Results language:
-          </label>
-          <Select
-            defaultValue={this.state.language}
-            value={this.state.language}
-            placeholder="Results language"
-            onChange={(value) => this.updateState('language', value)}
-            filterOption={true}
-          >
-            {supportedLanguages.map((supportedLanguage, index) => (
-              <Select.Option key={index} value={supportedLanguage.value}>
-                {supportedLanguage.title}
-              </Select.Option>
-            ))}
-          </Select>
-        </ControlContainer>
-        <ControlContainer>
+        <ControlsRow>
           <Checkbox
             className="session-checkbox"
             defaultChecked={this.state.useSession}
@@ -109,7 +68,50 @@ class Controls extends Component {
             </Tooltip>{' '}
             Generate session token
           </Checkbox>
-        </ControlContainer>
+        </ControlsRow>
+        <ControlsRow>
+          <ControlContainer>
+            <label>
+              <Tooltip title={this.locationByInfo} placement="bottomRight">
+                <Icon type="info-circle" />
+              </Tooltip>{' '}
+              Query locations by:
+            </label>
+            <Select
+              defaultValue={this.state.placeType}
+              value={this.state.placeType}
+              placeholder="Query by"
+              onChange={(value) => this.updateState('placeType', value)}
+            >
+              {locationTypes.map((locationType, index) => (
+                <Select.Option key={index} value={locationType.value}>
+                  {locationType.title}
+                </Select.Option>
+              ))}
+            </Select>
+          </ControlContainer>
+          <ControlContainer className="language-control">
+            <label>
+              <Tooltip title={this.languagesInfo} placement="bottom">
+                <Icon type="info-circle" />
+              </Tooltip>{' '}
+              Results language:
+            </label>
+            <Select
+              defaultValue={this.state.language}
+              value={this.state.language}
+              placeholder="Results language"
+              onChange={(value) => this.updateState('language', value)}
+              filterOption={true}
+            >
+              {supportedLanguages.map((supportedLanguage, index) => (
+                <Select.Option key={index} value={supportedLanguage.value}>
+                  {supportedLanguage.title}
+                </Select.Option>
+              ))}
+            </Select>
+          </ControlContainer>
+        </ControlsRow>
       </Container>
     );
   }

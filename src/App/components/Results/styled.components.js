@@ -15,10 +15,6 @@ export const Container = styled.div`
     &.bigger {
       flex-grow: 2;
     }
-
-    pre {
-      margin-top: 50px;
-    }
   }
 `;
 
@@ -26,7 +22,6 @@ export const Title = styled.h2`
   margin: 0;
   line-height: 30px;
   height: 30px;
-  position: fixed;
   z-index: 2;
   width: 100%;
   background-color: #fff;

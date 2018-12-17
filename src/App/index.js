@@ -55,7 +55,7 @@ class App extends Component {
     return (
       <>
         <GitHubCorner href="https://github.com/mykhailo-riabokon/google-place-api-example" target="_blank">
-          <Icon type="github" style={{ fontSize: '4em' }} />
+          <Icon type="github" />
         </GitHubCorner>
         <AppContainer>
           <ContainerColumn>
