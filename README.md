@@ -1,3 +1,5 @@
+More details by this [link](https://medium.com/@mykhailo.riabokon/how-hard-is-to-collect-location-data-with-and-without-google-place-api-44434201853f).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
